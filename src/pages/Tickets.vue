@@ -1,5 +1,5 @@
 <template>
-  <>
+  <div>
     <div class="page-header">
       <div class="container">
         <h1>Manage Tickets</h1>
@@ -28,7 +28,7 @@
       @close="handleCloseModal"
       @save="handleSaveTicket"
     />
-  </>
+  </div>
 </template>
 
 <script setup>
@@ -39,15 +39,14 @@ import TicketFormModal from "../components/TicketFormModal.vue";
 
 const tickets = ref([]);
 const isModalOpen = ref(false);
-const currentTicket = ref(null); // null for create, object for edit
+const currentTicket = ref(null); 
 const loading = ref(true);
 const toast = useToast();
 
-// --- Data Fetching ---
 const fetchTickets = async () => {
   loading.value = true;
   try {
-    const response = await fetch("http://localhost:3001/tickets");
+    const response = await fetch("https://hng-ticket-api-kam7.vercel.app/api/tickets");
     if (!response.ok) throw new Error("Failed to fetch");
     const data = await response.json();
     tickets.value = data;
@@ -61,7 +60,6 @@ const fetchTickets = async () => {
 
 onMounted(fetchTickets);
 
-// --- Modal Handlers ---
 const handleOpenCreateModal = () => {
   currentTicket.value = null;
   isModalOpen.value = true;
@@ -75,12 +73,11 @@ const handleCloseModal = () => {
   currentTicket.value = null;
 };
 
-// --- CRUD Operations ---
 const handleSaveTicket = async (ticketData) => {
   const isEditing = !!currentTicket.value;
   const url = isEditing
-    ? `http://localhost:3001/tickets/${currentTicket.value.id}`
-    : "http://localhost:3001/tickets";
+    ? `https://hng-ticket-api-kam7.vercel.app/api/tickets/${currentTicket.value.id}`
+    : "https://hng-ticket-api-kam7.vercel.app/api/tickets";
   const method = isEditing ? "PUT" : "POST";
 
   try {
@@ -92,7 +89,7 @@ const handleSaveTicket = async (ticketData) => {
     if (!response.ok) throw new Error("Failed to save ticket");
 
     toast.success(`Ticket ${isEditing ? "updated" : "created"} successfully!`);
-    fetchTickets(); // Refresh list
+    fetchTickets();
     handleCloseModal();
   } catch (error) {
     console.error("Failed to save ticket:", error);
@@ -105,13 +102,13 @@ const handleDeleteTicket = async (ticketId) => {
 
   try {
     const response = await fetch(
-      `http://localhost:3001/tickets/${ticketId}`,
+      `https://hng-ticket-api-kam7.vercel.app/api/tickets/${ticketId}`,
       { method: "DELETE" }
     );
     if (!response.ok) throw new Error("Failed to delete ticket");
 
     toast.success("Ticket deleted successfully!");
-    fetchTickets(); // Refresh list
+    fetchTickets();
   } catch (error) {
     console.error("Failed to delete ticket:", error);
     toast.error("Failed to delete ticket.");

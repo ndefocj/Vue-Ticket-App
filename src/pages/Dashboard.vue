@@ -1,5 +1,5 @@
 <template>
-  <>
+  <div>
     <div class="page-header">
       <div class="container">
         <h1>Dashboard</h1>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-  </>
+  </div>
 </template>
 
 <script setup>
@@ -38,7 +38,7 @@ const toast = useToast();
 
 const fetchStats = async () => {
   try {
-    const response = await fetch("http://localhost:3001/tickets");
+    const response = await fetch("https://hng-ticket-api-kam7.vercel.app/api/tickets");
     if (!response.ok) throw new Error("Failed to fetch tickets");
     const tickets = await response.json();
 
