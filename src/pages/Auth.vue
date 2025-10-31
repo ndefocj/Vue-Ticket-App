@@ -36,7 +36,7 @@
 
 <script setup>
 import { ref } from "vue";
-import { useAuthStore } from "../store/auth";
+import { useAuthStore } from "../store/auth.js";
 import { useToast } from "vue-toastification";
 
 const isLogin = ref(true);

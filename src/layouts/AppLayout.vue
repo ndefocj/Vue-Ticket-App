@@ -19,14 +19,13 @@
     <main>
       <RouterView />
     </main>
-    
     <Footer></Footer>
   </div>
 </template>
 
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import { useAuthStore } from "../store/auth";
+import { useAuthStore } from "../store/auth.js";
 import Footer from "../components/Footer.vue";
 
 const authStore = useAuthStore();
@@ -43,6 +42,6 @@ const handleLogout = () => {
   min-height: 100vh;
 }
 main {
-  flex: 1; 
+  flex: 1;
 }
 </style>
