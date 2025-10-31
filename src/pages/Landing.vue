@@ -1,5 +1,5 @@
 <template>
-  <>
+  <div>
     <div class="circle circle-1"></div>
 
     <section class="hero">
@@ -56,7 +56,7 @@
         <div class="circle circle-2"></div>
       </div>
     </section>
-  </>
+  </div>
 </template>
 
 <script setup>
