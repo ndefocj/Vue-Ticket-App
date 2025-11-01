@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="card-box">
         <div class="modal-header">
-          <h2>{{ isEditing ? "Edit Ticket" : "Create New Ticket" }}</h2>
+          <h2> isEditing ? "Edit Ticket" : "Create New Ticket" </h2>
           <button @click="$emit('close')" class="modal-close">&times;</button>
         </div>
         <form class="modal-form" @submit.prevent="handleSubmit" noValidate>
@@ -66,8 +66,7 @@ const isEditing = !!props.ticket;
 
   if (isEditing) {
     formData.value = { ...props.ticket };
-  }
-});
+  };
 
 const validate = () => {
   const newErrors = {};

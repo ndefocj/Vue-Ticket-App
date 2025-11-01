@@ -37,9 +37,10 @@ import { useToast } from "vue-toastification";
 import TicketCard from "../components/TicketCard.vue";
 import TicketFormModal from "../components/TicketFormModal.vue";
 
+
 const tickets = ref([]);
 const isModalOpen = ref(false);
-const currentTicket = ref(null); 
+const currentTicket = ref(null);
 const loading = ref(true);
 const toast = useToast();
 
