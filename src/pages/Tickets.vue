@@ -1,3 +1,6 @@
+import TicketCard from "../components/TicketCard.vue";
+import TicketFormModal from "../components/TicketFormModal.vue";
+
 <template>
   <div>
     <div class="page-header">
